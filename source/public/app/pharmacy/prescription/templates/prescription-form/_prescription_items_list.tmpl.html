@@ -1,0 +1,43 @@
+<md-card ng-if="rxCounter > 0 || otcCounter > 0" flex>
+    <md-card-content>
+        <div flex ng-if="rxCounter > 0">
+            <h4 style="margin:0;">
+                <div layout="row">
+                    <div flex="20" style="text-align: left">RX</div>
+                    <div flex="5" class="labeled-item">QOH</div>
+                    <div flex="5" class="labeled-item">QTY</div>
+                    <div flex="5" class="labeled-item">Days</div>
+                    <div flex="5" class="labeled-item">R/F</div>
+                    <div flex="10" class="labeled-item">Price</div>
+                    <div flex="10" class="labeled-item">Tax</div>
+                    <div flex="10" class="labeled-item">Fee</div>
+                    <div flex="10" class="labeled-item">Total</div>
+                    <div flex style="text-align: right;">RX-total: ${{CommonService.priceFormat(price.rx)}}</div>
+                </div>
+            </h4>
+            <div class="prescription-item-form prescription-item-list" ng-repeat="prescriptionItem in prescriptionForm.prescription_items | filter: { is_prescription: 1 }">
+                <ng-include src="CommonService.prepareTemplateSrc('/app/pharmacy/prescription/templates/prescription-form/_prescription_item.tmpl.html')" ></ng-include>
+            </div>
+        </div>
+
+        <div flex ng-if="otcCounter > 0">
+            <h4 style="margin:0;">
+                <div layout="row">
+                    <div flex="20" style="text-align: left">OTC</div>
+                    <div flex="5" class="labeled-item">QOH</div>
+                    <div flex="5" class="labeled-item">QTY</div>
+                    <div flex="5" class="labeled-item">Days</div>
+                    <div flex="5" class="labeled-item">R/F</div>
+                    <div flex="10" class="labeled-item">Price</div>
+                    <div flex="10" class="labeled-item">Tax</div>
+                    <div flex="10" class="labeled-item">Fee</div>
+                    <div flex="10" class="labeled-item">Total</div>
+                    <div flex style="text-align: right;">OTC-total: ${{CommonService.priceFormat(price.otc)}}</div>
+                </div>
+            </h4>
+            <div class="prescription-item-form prescription-item-list" ng-repeat="prescriptionItem in prescriptionForm.prescription_items | filter: { is_prescription: 0 }">
+                <ng-include src="CommonService.prepareTemplateSrc('/app/pharmacy/prescription/templates/prescription-form/_prescription_item.tmpl.html')" ></ng-include>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>

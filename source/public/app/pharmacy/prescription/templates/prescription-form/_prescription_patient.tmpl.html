@@ -1,0 +1,54 @@
+<md-card class="prescription-patient-form">
+    <md-card-content>
+
+        <md-subheader class="md-primary">
+            Patient Details
+            <a ng-if="patientForm.id" ng-href="" ng-click="viewPatientHistory()" style="float:right; cursor: pointer;">profile</a>
+        </md-subheader>
+
+        <div layout="column" class="form-no-float">
+            <div flex class="md-button-right">
+                <md-autocomplete
+                        class="autocomplete-no-float"
+                        md-no-float
+                        md-no-cache
+                        ng-required="true"
+                        md-selected-item-change="patientSelected(item)"
+                        md-input-minlength="2"
+                        md-input-maxlength="18"
+                        md-delay="500"
+                        md-input-id="patientAutoComplete"
+                        md-selected-item="selectedPatient"
+                        md-search-text="patientSearchText"
+                        md-items="item in patientQuerySearch(patientSearchText)"
+                        md-item-text="item.name"
+                        placeholder="Name">
+                    <md-item-template>
+                        <span md-highlight-text="patientSearchText">{{item.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found.
+                    </md-not-found>
+                </md-autocomplete>
+                <md-button class="md-fab md-mini md-primary" aria-label="Add New Patient" ng-click="addPatientDialog($event)">
+                    <md-icon md-font-icon="fa fa-plus"></md-icon>
+                </md-button>
+            </div>
+            <div flex>
+                <md-input-container flex md-no-float>
+                    <input ng-model="patientForm.address" type="text" disabled placeholder="Address" />
+                </md-input-container>
+            </div>
+            <div flex>
+                <md-input-container flex md-no-float>
+                    <input ng-model="patientForm.city" type="text" disabled placeholder="City" />
+                </md-input-container>
+            </div>
+            <div flex>
+                <md-input-container flex md-no-float>
+                    <input ng-model="patientForm.phone" type="text" disabled placeholder="Phone" />
+                </md-input-container>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>

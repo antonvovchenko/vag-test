@@ -1,0 +1,50 @@
+<md-dialog aria-label="Tax details form" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <md-icon md-font-icon="fa fa-edit"></md-icon>&nbspTax details form
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form ng-submit="submitTaxDialogForm()">
+        <md-dialog-content class="add-tax-form">
+            <md-content class="md-padding">
+
+                <div layout="row">
+                    <div flex>
+
+                        <div layout="column">
+
+                            <md-input-container flex>
+                                <label>Value</label>
+                                <input ng-model="itemForm.value" type="text" required>
+                            </md-input-container>
+
+
+                            <md-input-container flex>
+                                <label>Description</label>
+                                <textarea ng-model="itemForm.description"></textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+
+            </md-content>
+        </md-dialog-content>
+
+        <md-dialog-actions class="md-actions">
+            <md-button class="md-primary">
+                Save
+            </md-button>
+            <md-button class="md-warn" ng-click="cancel($event)">
+                Cancel
+            </md-button>
+            <input type="submit" class="hide" />
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

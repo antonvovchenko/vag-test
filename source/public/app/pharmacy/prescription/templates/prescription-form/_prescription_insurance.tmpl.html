@@ -1,0 +1,36 @@
+<md-card class="prescription-patient-form">
+    <md-card-content>
+
+        <md-subheader class="md-primary">Insurance Cards</md-subheader>
+
+        <div layout="row">
+
+            <div flex="15">
+                <md-button class="md-primary md-raised swipe-card-btn" ng-click="swipeCardOpen()">[F7] Swipe</md-button>
+            </div>
+
+            <div flex="70" class="swipe-card-box" layout="column">
+
+                <div flex ng-show="swipe.is_open_form">
+                    <form ng-submit="swipeCardSubmit()" flex layout="row">
+                        <md-input-container md-no-float flex="80">
+                            <input ng-model="swipe.card_data" type="text" required aria-label="Card data" placeholder="Waiting card data..."/>
+                        </md-input-container>
+                        <md-button flex="10" class="md-primary md-raised swipe-card-btn">Apply</md-button>
+                        <md-button flex="10" class="md-warn md-raised swipe-card-btn" ng-click="swipeCardExit($event)">Cancel</md-button>
+                    </form>
+                </div>
+
+                <div flex ng-show="prescriptionForm.insurance_cards.length > 0" class="swipe-cards">
+                    <div ng-repeat="(index, card) in prescriptionForm.insurance_cards">
+                        {{index+1}}. {{card.bin_number}}, {{card.subscriber_number}} <a href="javascript:void(0)" ng-click="removeCard(card.id)"><md-icon md-font-icon="fa fa-times md-warn"></md-icon></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        </div>
+    </md-card-content>
+</md-card>

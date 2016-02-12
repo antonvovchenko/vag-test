@@ -1,0 +1,36 @@
+<md-dialog aria-label="Calculator" ng-cloak dnd-draggable class="druggable-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <md-icon md-font-icon="fa fa-edit"></md-icon>&nbspCalculator
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="add-tax-form" style="min-width: 240px;">
+        <md-content class="md-padding">
+
+            <div class="calculator">
+                <div class="display">{{ displayValue }}</div>
+                <div class="digitsKeyboard">
+                    <div class="digitKey" ng-repeat="key in digitKeys" ng-click="digitClicked(key.value)">
+                        {{ key.label }}
+                    </div>
+                    <div class="equalSignKey" ng-click="compute()">
+                        {{ equalSignKey.label }}
+                    </div>
+                </div>
+                <div class="operationsKeyboard">
+                    <div class="operationKey" ng-repeat="key in operationKeys" ng-click="operationClicked(key.operation)">
+                        {{ key.label }}
+                    </div>
+                </div>
+            </div>
+
+        </md-content>
+    </md-dialog-content>
+</md-dialog>
+

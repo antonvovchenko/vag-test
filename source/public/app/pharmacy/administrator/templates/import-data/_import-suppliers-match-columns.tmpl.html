@@ -1,0 +1,32 @@
+<div>
+    <legend style="font-size: 20px;">Match columns</legend>
+
+    <div layout="column" class="match-fields">
+        <div fles="50" layout="row" class="field-box top-field-box">
+            <div flex class="field-name">
+                Supplier field name
+            </div>
+            <div flex class="field-match">
+                Column field name from file
+            </div>
+        </div>
+        <div fles="50" layout="row" ng-repeat="(name, value) in suppliersColumns" class="field-box">
+            <div flex class="field-name">
+                {{value}}<span ng-class="{'required': value == 'Name', 'hide': value != 'Name'}" >*</span> =>
+            </div>
+            <div flex class="field-match">
+                <md-input-container>
+                    <md-select ng-model="matchSuppliersForm[name]" required aria-label="{{value}}">
+                        <md-option ng-repeat="field in uploaded_suppliers_file.fields" value="{{field}}">
+                            {{field}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <div>
+            <md-button class="md-raised md-primary" ng-click="applyMatching('suppliers', uploaded_suppliers_file.result, matchSuppliersForm)">Apply</md-button>
+        </div>
+    </div>
+
+</div>

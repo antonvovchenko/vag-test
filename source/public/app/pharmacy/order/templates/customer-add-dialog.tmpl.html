@@ -1,0 +1,80 @@
+<md-dialog aria-label="Fee details form" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <md-icon md-font-icon="fa fa-edit"></md-icon>&nbsp;Customer details form
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form ng-submit="submitCustomerDialogForm()">
+        <md-dialog-content class="add-customer-form">
+            <md-content class="md-padding">
+
+                <div layout="row">
+                    <div flex>
+
+                        <div layout="column">
+
+                            <md-input-container flex>
+                                <label>Name</label>
+                                <input ng-model="customerDialogForm.name" type="text" required />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Credit Limit</label>
+                                <input ng-model="customerDialogForm.credit_limit" type="text" />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Balance</label>
+                                <input ng-model="customerDialogForm.balance" type="text" disabled />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Contact</label>
+                                <input ng-model="customerDialogForm.contact" type="text" />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Address</label>
+                                <input ng-model="customerDialogForm.address" type="text" />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>City</label>
+                                <input ng-model="customerDialogForm.city" type="text" />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Phone</label>
+                                <input ng-model="customerDialogForm.phone" type="text" />
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Email</label>
+                                <input ng-model="customerDialogForm.email" type="email" />
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                </div>
+
+            </md-content>
+        </md-dialog-content>
+
+        <md-dialog-actions class="md-actions">
+            <md-button class="md-primary">
+                Save
+            </md-button>
+            <md-button class="md-warn" ng-click="cancel($event)">
+                Cancel
+            </md-button>
+            <input type="submit" class="hide" />
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

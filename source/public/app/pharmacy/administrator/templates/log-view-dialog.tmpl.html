@@ -1,0 +1,53 @@
+<md-dialog aria-label="Log details" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <md-icon md-font-icon="fa fa-eye"></md-icon>&nbsp Log details
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="add-tax-form">
+        <md-content class="md-padding">
+
+            <div layout="row">
+                <div flex>
+
+                    <div layout="column">
+                        <h4 style="margin: 20px 0 0 0;">Updated Values</h4>
+                        <div layout="row">
+                            <div flex="50">
+                                <md-input-container ng-repeat="(key, value) in item.old_value">
+                                    <label>Old <span>{{key}}</span></label>
+                                    <input value="{{value}}" type="text" disabled>
+                                </md-input-container>
+                            </div>
+                            <div flex="50">
+                                <md-input-container ng-repeat="(key, value) in item.new_value">
+                                    <label>New <span>{{key}}</span></label>
+                                    <input value="{{value}}" type="text" disabled>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions class="md-actions">
+        <md-button class="md-primary">
+            Save
+        </md-button>
+        <md-button class="md-warn" ng-click="cancel($event)">
+            Cancel
+        </md-button>
+        <input type="submit" class="hide" />
+    </md-dialog-actions>
+</md-dialog>
+

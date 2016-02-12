@@ -1,0 +1,357 @@
+<md-toolbar class="toolbar-default">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-font-icon="fa fa-arrow-left"></md-icon>
+        </md-button>
+        <h2>
+            <span translate>Import Data</span>
+        </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<md-content class="padded-content-page md-page-content-block">
+    <div layout-align="center center">
+
+        <md-card>
+            <md-card-content>
+
+                <md-tabs md-dynamic-height md-border-bottom md-selected="0">
+                    <md-tab label="Products">
+                        <md-content class="md-padding">
+
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-products.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="productForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_products_file"
+                                                       name="file"
+                                                       accept="text/csv"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorProductsFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_products_file" ng-click="uploadFile(uploaded_products_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line" style="justify-content: flex-start; padding: 20px 0 0 0;">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_products_file.result && uploaded_products_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-products-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_products_file.result && !uploaded_products_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-products.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Inventory">
+                        <md-content class="md-padding">
+
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-inventory.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_inventory_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorTaxonomiesFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_inventory_file" ng-click="uploadFile(uploaded_inventory_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_inventory_file.result && uploaded_inventory_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-inventory-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_inventory_file.result && !uploaded_inventory_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-inventory.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Doctors">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-doctors.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_doctors_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorDoctorsFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_doctors_file" ng-click="uploadFile(uploaded_doctors_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_doctors_file.result && uploaded_doctors_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-doctors-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_doctors_file.result && !uploaded_doctors_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-doctors.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Patients">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-patients.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_patients_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorPatientsFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_patients_file" ng-click="uploadFile(uploaded_patients_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_patients_file.result && uploaded_patients_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-patients-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_patients_file.result && !uploaded_patients_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-patients.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Categories">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-categories.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_categories_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorCategoriesFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_categories_file" ng-click="uploadFile(uploaded_categories_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_categories_file.result && uploaded_categories_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-categories-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_categories_file.result && !uploaded_categories_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-categories.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Label Codes">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-label_codes.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_label_codes_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorLabelCodesFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_label_codes_file" ng-click="uploadFile(uploaded_label_codes_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_label_codes_file.result && uploaded_label_codes_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-label_codes-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_label_codes_file.result && !uploaded_label_codes_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-label_codes.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Fees">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-fees.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_fees_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorFeesFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_fees_file" ng-click="uploadFile(uploaded_fees_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_fees_file.result && uploaded_fees_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-fees-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_fees_file.result && !uploaded_fees_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-fees.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Suppliers">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="row">
+                                        <div flex>
+                                            <legend>Example of file</legend>
+                                            <a href="/data/import-data-suppliers.csv" target="_blank" download>Download</a>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-3-line md-no-proxy">
+                                    <div class="md-list-item-text" layout="column">
+                                        <legend>Upload file</legend>
+                                        <div>
+                                            <form name="myForm">
+                                                <input type="file"
+                                                       ngf-select
+                                                       ng-model="uploaded_suppliers_file"
+                                                       name="file"
+                                                       accept="application/json"
+                                                       ngf-max-size="100MB"
+                                                       ngf-model-invalid="errorSuppliersFiles" />
+
+                                                <md-button class="md-raised md-primary" ng-disabled="!uploaded_suppliers_file" ng-click="uploadFile(uploaded_suppliers_file)">Upload</md-button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-list-item class="md-2-line">
+                                    <div class="md-list-item-text" layout="column">
+                                        <ng-include ng-if="uploaded_suppliers_file.result && uploaded_suppliers_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-suppliers-match-columns.tmpl.html')" ></ng-include>
+                                        <ng-include ng-if="uploaded_suppliers_file.result && !uploaded_suppliers_file.preview" src="CommonService.prepareTemplateSrc('/app/pharmacy/administrator/templates/import-data/_import-data-prepared-suppliers.tmpl.html')" ></ng-include>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                </md-tabs>
+
+            </md-card-content>
+        </md-card>
+
+    </div>
+</md-content>

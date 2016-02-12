@@ -1,0 +1,30 @@
+<div>
+    <legend>Inventory</legend>
+
+    <md-data-table-container >
+        <table md-data-table class="md-primary md-data-table">
+            <thead>
+            <tr>
+                <th name="{{value}}" ng-repeat="(name, value) in inventoryColumns"></th>
+                <th name="Database Status"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr md-auto-select ng-repeat="item in uploaded_inventory_file.items_paginated">
+                <td>{{item.product_title}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.supplier}}</td>
+                <td>{{item.reason}}</td>
+                <td>{{item.expiry_date}}</td>
+                <td style="color:red;" ng-if="item.status_item == 'error'">{{item.status_message}}</td>
+                <td style="color:green;" ng-if="item.status_item == 'success'">{{item.status_message}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+
+    <md-data-table-pagination md-limit="inventoryQuery.limit" md-page="inventoryQuery.page" md-total="{{ uploaded_inventory_file.items.length}}" md-trigger="getItems('inventory')"></md-data-table-pagination>
+
+    <md-button class="md-raised md-primary" ng-if="uploaded_inventory_file.result" ng-click="importData('inventory', uploaded_inventory_file.items)">Import Data</md-button>
+
+</div>

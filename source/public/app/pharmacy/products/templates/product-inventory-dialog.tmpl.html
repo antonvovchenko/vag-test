@@ -1,0 +1,46 @@
+<md-dialog aria-label="Product Inventory" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Product Inventory</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="product-inventory-dialog-content">
+        <md-content class="md-padding">
+            <md-data-table-container >
+                <table md-data-table class="md-primary md-data-table">
+                    <thead>
+                    <tr>
+                        <th name="#"></th>
+                        <th name="Date"></th>
+                        <th name="Salesman"></th>
+                        <th name="Quantity In"></th>
+                        <th name="Quantity Out"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr md-auto-select ng-repeat="item in inventories">
+                        <td>{{item.id}}</td>
+                        <td>{{item.created_at}}</td>
+                        <td>{{item.user.full_name}}</td>
+                        <td><span ng-if="item.quantity_on > 0">{{item.quantity_on}}</span></td>
+                        <td><span ng-if="item.quantity_on < 0">{{item.quantity_on*-1}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+
+        </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions class="md-actions">
+        <md-button class="md-warn" ng-click="cancel($event)">
+            Close
+        </md-button>
+        <input type="submit" class="hide" />
+    </md-dialog-actions>
+</md-dialog>
+

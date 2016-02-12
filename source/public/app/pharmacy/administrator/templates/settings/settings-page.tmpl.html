@@ -1,0 +1,339 @@
+<md-toolbar class="toolbar-default">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-font-icon="fa fa-arrow-left"></md-icon>
+        </md-button>
+        <h2>
+            <span translate>Settings</span>
+        </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<md-content class="padded-content-page md-page-content-block">
+    <div layout-align="center center">
+
+        <md-card ng-if="isShow">
+            <md-card-content>
+
+                <md-tabs md-dynamic-height md-border-bottom md-selected="0">
+                    <md-tab label="Common" md-on-select="tabSelected('common')">
+                        <md-content class="md-padding">
+                            <form ng-submit="save(commonForm)">
+                                <div layout="column">
+                                    <div flex layout="row">
+
+                                        <div flex="50" class="md-padding">
+
+                                            <div flex layout="column">
+                                                <md-input-container flex>
+                                                    <label>GCT#</label>
+                                                    <input ng-model="commonForm.common_pharmacy_gct" type="text" />
+                                                </md-input-container>
+                                                <md-input-container flex>
+                                                    <label>Pharmacy Name</label>
+                                                    <input ng-model="commonForm.common_pharmacy_name" type="text" required />
+                                                </md-input-container>
+                                                <md-input-container flex>
+                                                    <label>Pharmacy Address</label>
+                                                    <input ng-model="commonForm.common_pharmacy_address" type="text" />
+                                                </md-input-container>
+                                                <md-input-container flex>
+                                                    <label>Pharmacy City</label>
+                                                    <input ng-model="commonForm.common_pharmacy_city" type="text" />
+                                                </md-input-container>
+                                                <md-input-container flex>
+                                                    <label>Pharmacy Phone</label>
+                                                    <input ng-model="commonForm.common_pharmacy_phone" type="text" />
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+
+                                        <div flex="50" class="md-padding">
+
+                                            <div flex layout="row">
+                                                <md-input-container flex>
+                                                    <label>Session lifetime (sec)</label>
+                                                    <input ng-model="commonForm.common_session_lifetime" type="text" required />
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div flex layout="row" class="md-padding">
+                                        <md-button class="md-primary md-raised">
+                                            Save
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </form>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Insurance" md-on-select="tabSelected('insurance')">
+                        <md-content class="md-padding">
+
+                            <div layout="row">
+                                <div flex="50">
+                                    <md-input-container flex>
+                                        <label>Company Name</label>
+                                        <input ng-model="insuranceForm.company_name" type="text" required maxlength="20" />
+                                    </md-input-container>
+
+                                    <md-input-container flex>
+                                        <label>GCT (%)</label>
+                                        <input ng-model="insuranceForm.gct_percent" type="text" required maxlength="6" />
+                                    </md-input-container>
+
+                                    <md-input-container flex>
+                                        <label>Insurance Service Fee (%)</label>
+                                        <input ng-model="insuranceForm.insurance_service_fee_percent" type="text" required maxlength="6" />
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                            <md-divider style="margin: 20px 0 0;"></md-divider>
+
+                            <div layout="row">
+
+                                <div flex="50">
+
+                                    <h3>Provider numbers</h3>
+
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>BCJ Provider Number</label>
+                                            <input ng-model="insuranceForm.bcj_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>LOJ Provider Number</label>
+                                            <input ng-model="insuranceForm.loj_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>EBA Provider Number</label>
+                                            <input ng-model="insuranceForm.eba_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>Med Provider Number</label>
+                                            <input ng-model="insuranceForm.med_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>JADEP Provider Number</label>
+                                            <input ng-model="insuranceForm.jadep_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>NHF Provider Number</label>
+                                            <input ng-model="insuranceForm.nhf_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>CLK Provider Number</label>
+                                            <input ng-model="insuranceForm.clk_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>MEDECUS Provider Number</label>
+                                            <input ng-model="insuranceForm.medecus_provider_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                </div>
+
+                                <div flex="50">
+
+                                    <h3>Provider BIN numbers</h3>
+
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>BCJ BIN Number</label>
+                                            <input ng-model="insuranceForm.bcj_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>NHF BIN Number</label>
+                                            <input ng-model="insuranceForm.nhf_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>EBA BIN Number</label>
+                                            <input ng-model="insuranceForm.eba_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>FLB BIN Number</label>
+                                            <input ng-model="insuranceForm.flb_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>CLK BIN Number</label>
+                                            <input ng-model="insuranceForm.clk_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                    <div flex layout="row">
+                                        <md-input-container flex>
+                                            <label>Med BIN Number</label>
+                                            <input ng-model="insuranceForm.med_bin_number" type="text" required />
+                                        </md-input-container>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="md-padding">
+                                <md-button class="md-primary md-raised" ng-click="save(insuranceForm)">
+                                    Save
+                                </md-button>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="License" md-on-select="tabSelected('license')">
+                        <md-content class="md-padding">
+                            <div layout="row">
+
+                                <div flex="40">
+
+                                    <div flex layout="row">
+                                        <div flex="30" style="opacity: 0.6;">Client:</div>
+                                        <div flex="80">{{license.client}}</div>
+                                    </div>
+
+                                    <div flex layout="row">
+                                        <div flex="30" style="opacity: 0.6;">Status:</div>
+                                        <div flex="80" ng-if="error == false">Active</div>
+                                        <div flex="80" ng-if="error != false">Inactive</div>
+                                    </div>
+
+                                    <div flex layout="row" ng-if="error != false">
+                                        <div flex="30" style="opacity: 0.6;">Error:</div>
+                                        <div flex="80">{{error}}</div>
+                                    </div>
+
+                                    <div flex layout="row">
+                                        <div flex="30" style="opacity: 0.6;">Expire:</div>
+                                        <div flex="80">{{license.expire}}</div>
+                                    </div>
+
+                                    <div flex layout="row" ng-if="error != false">
+                                        <md-button class="md-primary md-raised" ng-click="setLicenseKeyDialog()">
+                                            Set License Key
+                                        </md-button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Printers" md-on-select="tabSelected('printers')">
+                        <md-content class="md-padding">
+
+                            <div layout="column">
+
+                                <div flex>
+                                    <div flex layout="row" class="printers-settings">
+                                        <label class="print-label">Print to (by default):</label>
+
+                                        <md-radio-group ng-model="printerForm.printers_default_print_type" flex layout="row">
+                                            <md-radio-button value="screen" aria-label="Screen" class="md-primary">
+                                                Screen
+                                            </md-radio-button>
+                                            <md-radio-button value="printer" aria-label="Printer" class="md-primary">
+                                                Printer
+                                            </md-radio-button>
+                                        </md-radio-group>
+
+                                        <div flex class="print-printers-box">
+                                            <md-input-container flex="50" ng-if="printerForm.printers_default_print_type == 'printer'">
+                                                <label>Select Printer</label>
+                                                <md-select ng-model="printerForm.printers_default_printer" required>
+                                                    <md-option ng-repeat="value in printers" value="{{value.NAME}}">
+                                                        {{value.NAME}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div flex>
+                                    <div flex layout="row" class="printers-settings">
+                                        <label class="print-label">Print inventory to:</label>
+
+                                        <md-radio-group ng-model="printerForm.printers_inventory_print_type" flex layout="row">
+                                            <md-radio-button value="screen" aria-label="Screen" class="md-primary">
+                                                Screen
+                                            </md-radio-button>
+                                            <md-radio-button value="printer" aria-label="Printer" class="md-primary">
+                                                Printer
+                                            </md-radio-button>
+                                        </md-radio-group>
+
+                                        <div flex class="print-printers-box">
+                                            <md-input-container flex="50" ng-if="printerForm.printers_inventory_print_type == 'printer'">
+                                                <label>Select Printer</label>
+                                                <md-select ng-model="printerForm.printers_inventory_printer" required>
+                                                    <md-option ng-repeat="value in printers" value="{{value.NAME}}">
+                                                        {{value.NAME}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div flex>
+
+                                    <div flex layout="row" class="printers-settings">
+
+                                        <label class="print-label">Print prescriptions to:</label>
+
+                                        <md-radio-group ng-model="printerForm.printers_prescription_print_type" flex layout="row">
+                                            <md-radio-button value="screen" aria-label="Screen" class="md-primary">
+                                                Screen
+                                            </md-radio-button>
+                                            <md-radio-button value="printer" aria-label="Printer" class="md-primary">
+                                                Printer
+                                            </md-radio-button>
+                                        </md-radio-group>
+
+                                        <div flex class="print-printers-box">
+                                            <md-input-container flex="50" ng-if="printerForm.printers_prescription_print_type == 'printer'">
+                                                <label>Select Printer</label>
+                                                <md-select ng-model="printerForm.printers_prescription_printer" required>
+                                                    <md-option ng-repeat="value in printers" value="{{value.NAME}}">
+                                                        {{value.NAME}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+
+                                    <div flex layout="row" class="md-padding">
+                                        <md-button class="md-primary md-raised" ng-click="save(printerForm)">
+                                            Save
+                                        </md-button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>

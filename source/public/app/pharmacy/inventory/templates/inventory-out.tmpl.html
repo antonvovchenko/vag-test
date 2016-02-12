@@ -1,0 +1,182 @@
+<md-toolbar class="toolbar-default">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Inventory Out">
+            <md-icon md-font-icon="fa fa-arrow-left"></md-icon>
+        </md-button>
+        <h2>
+            <span>Inventory Out</span>
+        </h2>
+        <span flex></span>
+        <!--<md-button class="md-raised md-primary md-hue-1" print-btn>-->
+            <!--Print-->
+        <!--</md-button>-->
+        <md-button class="md-raised md-primary md-hue-1" ng-click="submitForm()">
+            Save
+        </md-button>
+        <md-button class="md-warn" href="/#/inventory">
+            Cancel
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-content class="padded-content-page md-page-content-block">
+    <div layout-align="center center" ng-if="showForm" class="return-drugs-form">
+        <md-card>
+            <md-card-content>
+
+                <md-radio-group ng-model="inventoryForm.type" layout="row">
+                    <md-radio-button value="supplier" aria-label="Supplier Return" class="md-primary" style="margin-bottom: 0px;">
+                        Supplier Return
+                    </md-radio-button>
+                    <md-radio-button value="shipment" aria-label="Shipment another Pharmacy" class="md-primary" style="margin-bottom: 0px;">
+                        Shipment another Pharmacy
+                    </md-radio-button>
+                </md-radio-group>
+
+                <div flex="50" ng-if="inventoryForm.type == 'shipment'">
+                    <md-input-container flex>
+                        <label>Pharmacy</label>
+                        <md-select ng-model="inventoryForm.pharmacy" ng-required="inventoryForm.type == 'shipment'">
+                            <md-option ng-repeat="pharmacy in pharmacies" value="{{pharmacy.title}}">
+                                {{pharmacy.title}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <md-input-container flex="50">
+                    <label>Reason</label>
+                    <textarea ng-model="inventoryForm.reason" rows="2"></textarea>
+                </md-input-container>
+
+            </md-card-content>
+        </md-card>
+
+
+        <md-card>
+            <md-card-content>
+
+                <h3 style="margin: 0px;">Add Product</h3>
+
+                <form ng-submit="addItem()">
+
+                    <div layout="row">
+
+                        <div flex="40">
+                            <md-autocomplete flex required
+                                             md-no-cache
+                                             md-input-id="returnDrugsProductAutoComplete"
+                                             md-input-minlength="2"
+                                             md-input-maxlength="255"
+                                             md-selected-item-change="productSelected(item)"
+                                             md-search-text="searchText"
+                                             md-items="item in querySearch(searchText)"
+                                             md-item-text="item.title"
+                                             md-floating-label="Drug">
+                                <md-item-template>
+                                    <span md-highlight-text="searchText">{{item.title}} ({{item.qoh}})</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    No matches found.
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+
+                        <div flex="40">
+                            <md-input-container class="batch-select">
+                                <label>Batch</label>
+                                <md-select ng-model="inventoryForm.batch_id" require aria-label="Batch" ng-disabled="!batches || batches.length == 0" ng-change="batchSelected(inventoryForm.batch_id)">
+                                    <md-option ng-repeat="batch in batches" value="{{batch.batch_id}}">
+                                        #{{batch.batch_id}}, Expire: {{CommonService.validDate(batch.expiry_date, PHARMACY_SETTINGS.date_format)}}, Supplier: {{batch.supplier.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div flex="5">
+                            <md-input-container class="quantity-input">
+                                <label>QOH</label>
+                                <input ng-model="inventoryForm.quantity_on_hold" type="text" readonly disabled>
+                            </md-input-container>
+                        </div>
+                        <div flex="10">
+                            <md-input-container class="quantity-input">
+                                <label>QTY OUT</label>
+                                <input ng-model="inventoryForm.quantity_on_out" type="text" required>
+                            </md-input-container>
+                        </div>
+
+                        <div flex="5">
+                            <md-button class="md-fab md-mini md-primary md-raised add-return-button" aria-label="Add">
+                                <md-icon md-font-icon="fa fa-plus"></md-icon>
+                            </md-button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </md-card-content>
+        </md-card>
+
+        <md-card ng-if="inventories.length > 0">
+            <md-card-content>
+
+                <h3 style="margin: 0px;">Products List</h3>
+
+                <div layout="row" ng-repeat="item in inventories">
+
+                    <div flex="30">
+                        <md-input-container>
+                            <label>Drug</label>
+                            <input value="{{item.product.title}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="10">
+                        <md-input-container>
+                            <label>Batch #</label>
+                            <input value="{{item.batch_id}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="10">
+                        <md-input-container>
+                            <label>Expire Date</label>
+                            <input value="{{CommonService.validDate(item.batch.expiry_date, PHARMACY_SETTINGS.date_format)}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="30">
+                        <md-input-container>
+                            <label>Supplier</label>
+                            <input value="{{item.batch.supplier.name}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="5">
+                        <md-input-container>
+                            <label>QOH</label>
+                            <input value="{{item.batch.batch_qoh}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="10">
+                        <md-input-container>
+                            <label>QTY OUT</label>
+                            <input value="{{item.quantity_on_out}}" type="text" disabled />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="5">
+                        <md-button class="md-fab md-mini md-warn md-raised add-return-button" aria-label="Remove" ng-click="removeItem(item)">
+                            <md-icon md-font-icon="fa fa-times"></md-icon>
+                        </md-button>
+                    </div>
+
+                </div>
+
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>
+

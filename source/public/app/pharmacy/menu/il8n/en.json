@@ -1,0 +1,10 @@
+{
+    "MENU": {
+        "DEFAULT": {
+            "DASHBOARD": "Dashboard",
+            "STOCK": "Stock",
+            "CUSTOMERS": "Customers",
+            "ORDERS": "Orders"
+        }
+    }
+}

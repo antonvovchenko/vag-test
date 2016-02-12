@@ -1,0 +1,60 @@
+<md-dialog aria-label="Fee details form" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <md-icon md-font-icon="fa fa-edit"></md-icon>&nbsp;Fee details form
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel">
+                <md-icon md-font-icon="fa fa-times"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form ng-submit="submitFeeDialogForm()">
+        <md-dialog-content class="add-label-code-form">
+            <md-content class="md-padding">
+
+                <div layout="row">
+                    <div flex>
+
+                        <div layout="column">
+
+                            <md-input-container flex>
+                                <label>Type</label>
+                                <input ng-model="feeDialogForm.card_type" type="text" required>
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Sort</label>
+                                <input ng-model="feeDialogForm.sort" type="text" required>
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Description</label>
+                                <input ng-model="feeDialogForm.description" type="text" required>
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Fees</label>
+                                <input ng-model="feeDialogForm.fees" type="text" required>
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                </div>
+
+            </md-content>
+        </md-dialog-content>
+
+        <md-dialog-actions class="md-actions">
+            <md-button class="md-primary">
+                Save
+            </md-button>
+            <md-button class="md-warn" ng-click="cancel($event)">
+                Cancel
+            </md-button>
+            <input type="submit" class="hide" />
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

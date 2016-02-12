@@ -1,0 +1,22 @@
+{
+  "name": "angular-dnd-module",
+  "version": "0.1.23",
+  "authors": [
+    "Afonin A.V. <toafonin@gmail.com>"
+  ],
+  "description": "Drag and Drop module for Super heroic AngularJS. No jQueryUI. Touch supporting",
+  "main": "./dist/angular-dnd.min.js",
+  "dependencies": {
+    "angular": "^1.4.5"
+  },
+  "_source": "git://github.com/Tuch/angular-dnd.git",
+  "homepage": "https://github.com/Tuch/angular-dnd",
+  "_release": "0.1.23",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.23",
+    "commit": "29d36f8fda28920f87d0f28ce16dce61f5c9446d"
+  },
+  "_target": "~0.1.23",
+  "_originalSource": "angular-dnd-module"
+}

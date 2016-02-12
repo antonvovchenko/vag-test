@@ -1,0 +1,28 @@
+<div class="md-padding">
+    <legend>Fees</legend>
+
+    <md-data-table-container >
+        <table md-data-table class="md-primary md-data-table">
+            <thead>
+            <tr>
+                <th name="{{value}}" ng-repeat="(name, value) in feesColumns"></th>
+                <th name="Status"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr md-auto-select ng-repeat="item in uploaded_fees_file.items_paginated">
+                <td>{{item.card_type}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.fee}}</td>
+                <td>{{item.sort}}</td>
+                <td style="color:red;" ng-if="item.status_item == 'error'">{{item.status_message}}</td>
+                <td style="color:green;" ng-if="item.status_item == 'success'">{{item.status_message}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+
+    <md-data-table-pagination md-limit="feesQuery.limit" md-page="feesQuery.page" md-total="{{ uploaded_fees_file.items.length}}" md-trigger="getItems('fees')"></md-data-table-pagination>
+
+    <md-button class="md-raised md-primary" ng-if="uploaded_fees_file.result" ng-click="importData('fees', uploaded_fees_file.items)">Import Data</md-button>
+</div>

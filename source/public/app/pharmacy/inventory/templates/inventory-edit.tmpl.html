@@ -1,0 +1,88 @@
+<form ng-submit="submitItemForm()">
+    <md-toolbar class="toolbar-default">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Inventory details">
+                <md-icon md-font-icon="fa fa-arrow-left"></md-icon>
+            </md-button>
+            <h2>
+                <span>Inventory Details</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="print()" ng-if="inventoryForm.type == 'return'">
+                Print[F3]
+            </md-button>
+            <md-button class="md-raised md-warn" href="/#/inventory">
+                Cancel
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content class="padded-content-page md-page-content-block">
+        <div layout-align="center center" ng-if="showForm" class="order-form">
+            <md-card>
+                <md-card-content>
+
+                    <div layout="row">
+                        <div flex="50">
+
+                            <div layout="column">
+
+                                <md-input-container flex>
+                                    <label>Type</label>
+                                    <input style="text-transform: capitalize;" ng-model="inventoryForm.type" type="text" disabled>
+                                </md-input-container>
+
+                                <div flex>
+                                    <md-input-container>
+                                        <label>Drug</label>
+                                        <input value="{{inventoryForm.product.title}}" type="text" readonly disabled>
+                                    </md-input-container>
+                                </div>
+
+                                <div flex>
+                                    <div layout="row">
+                                        <div flex>
+                                            <md-input-container class="quantity-input">
+                                                <label>Batch#</label>
+                                                <input ng-model="inventoryForm.batch_id" type="text" readonly disabled>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex>
+                                            <md-input-container class="quantity-input">
+                                                <label ng-if="inventoryForm.quantity_on > 0">QTY IN</label>
+                                                <label ng-if="inventoryForm.quantity_on < 0">QTY OUT</label>
+                                                <input ng-model="inventoryForm.quantity_on" type="text" disabled aria-label="QTY" />
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <md-input-container flex>
+                                    <label>Reason</label>
+                                    <input ng-model="inventoryForm.reason" type="text" disabled>
+                                </md-input-container>
+
+                                <md-input-container flex ng-if="inventoryForm.type == 'shipment'">
+                                    <label>Pharmacy</label>
+                                    <input ng-model="inventoryForm.pharmacy" type="text" disabled>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Supplier</label>
+                                    <input value="{{inventoryForm.supplier.name}}" type="text" readonly disabled>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Batch Expiry date</label>
+                                    <input ng-model="inventoryForm.batch_expiry_date" type="text" disabled>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+
+</form>
