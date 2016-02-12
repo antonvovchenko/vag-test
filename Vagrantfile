@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "chef_solo" do |chef|
         chef.add_recipe "apache2"
-        chef.add_recipe "mysql"
+        chef.add_recipe "mysqld::mysql_install"
         chef.add_recipe "php"
         chef.add_recipe "bld_app"
     end
