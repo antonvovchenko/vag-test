@@ -26,3 +26,12 @@ mysqld_password 'root' do
   # If required, you can specify your own auth-scheme here
   # auth '-u specialuser -pmypass'
 end
+
+mysql_database 'bld' do
+  connection(
+    :host     => '127.0.0.1',
+    :username => 'root',
+    :password => '398wjd98kjf8'
+  )
+  action :create
+end
