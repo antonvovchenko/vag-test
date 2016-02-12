@@ -14,15 +14,17 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "chef_solo" do |chef|
         chef.add_recipe "apache2"
+        chef.add_recipe "mysql"
+        chef.add_recipe "php"
         chef.add_recipe "bld_app"
     end
 
-    config.vm.provision "upgrade", "chef_solo" do |chef|
-        inline = "/bin/sh /vagrant/apply_update_1.sh"
-        chef.add_recipe "apache2"
-        chef.add_recipe "bld_app"
-    end
-
-    type: "shell", inline: "/bin/sh /vagrant/apply_update_1.sh"
+#    config.vm.provision "upgrade", "chef_solo" do |chef|
+#        inline = "/bin/sh /vagrant/apply_update_1.sh"
+#        chef.add_recipe "apache2"
+#        chef.add_recipe "bld_app"
+#    end
+#
+#    type: "shell", inline: "/bin/sh /vagrant/apply_update_1.sh"
 
 end
