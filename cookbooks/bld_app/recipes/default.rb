@@ -6,6 +6,7 @@ end
 
 include_recipe "apache2::mod_php5"
 include_recipe "php::module_mysql"
+include_recipe "php::module_curl"
 
 web_app "bld_site" do
   server_name node['hostname']
@@ -19,10 +20,6 @@ file '/vagrant/.env' do
   action :create
 end
 
-execute 'artisan-config-cache' do
-  cwd '/vagrant'
-  command 'php artisan config:cache'
-end
 execute 'artisan-cache-clear' do
   cwd '/vagrant'
   command 'php artisan cache:clear'
@@ -31,13 +28,17 @@ execute 'artisan-key-generate' do
   cwd '/vagrant'
   command 'php artisan key:generate'
 end
-#execute 'artisan-migrate' do
-#  cwd '/vagrant'
-#  command 'php artisan migrate'
-#end
+execute 'artisan-migrate' do
+  cwd '/vagrant'
+  command 'php artisan migrate'
+end
 execute 'artisan-optimize' do
   cwd '/vagrant'
   command 'php artisan optimize'
+end
+execute 'artisan-config-cache' do
+  cwd '/vagrant'
+  command 'php artisan config:cache'
 end
 
 apache_site "bld_site" do

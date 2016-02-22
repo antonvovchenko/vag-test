@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.network "private_network", ip: "172.16.0.4", netmask: "255.240.0.0"
 
-    config.vm.synced_folder "./source", "/vagrant", :nfs => true
+    config.vm.synced_folder "./code", "/vagrant", :nfs => true
 
     config.vm.provider "virtualbox" do |v|
         v.memory = 512
